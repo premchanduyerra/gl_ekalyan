@@ -1,0 +1,53 @@
+
+<br>
+
+
+{{this.errors.errors["email or password"]}}
+<div class="card flex justify-content-center" style="display: flex;flex-direction: column;align-items: center;">
+  <p-card header="Login Form" [style]="{ width: '360px',border:'1px solid black' }">
+
+
+<div >
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <div class="p-field">
+
+      <div class="card flex justify-content-center">
+        <span class="p-float-label">
+            <input pInputText id="email" formControlName="email"  style="width: 100% !important;"/>
+            <label htmlFor="email">Email</label>
+        </span>
+      </div>
+       <small class="p-error" *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
+        Email is required.
+      </small>
+    </div>
+<br>
+<br>
+    <div class="p-field">
+
+       <div class="card flex justify-content-center">
+        <span class="p-float-label">
+            <input type="password"  pPassword id="username" formControlName="password"  style="width: 100% !important;"/>
+            <label htmlFor="password">Password</label>
+        </span>
+      </div>
+
+       <small class="p-error" *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+        Password is required.
+      </small>
+    </div>
+    <br>
+
+    <span *ngIf="!loading">
+        <button type="submit" pButton label="Login" [disabled]="loginForm.invalid"  style="width: 100% !important;"></button>
+    </span>
+    <div *ngIf="loading" style="display: flex;flex-direction: column;align-items: center;">
+
+      <div class="card">
+        <p-progressSpinner styleClass="w-0.1rem h-0.1rem" strokeWidth="2" fill="var(--surface-ground)" animationDuration=".5s"></p-progressSpinner>
+      </div>
+    </div>
+  </form>
+</div>
+</p-card>
+</div>
