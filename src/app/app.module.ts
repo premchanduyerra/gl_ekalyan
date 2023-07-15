@@ -1,18 +1,12 @@
 import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './commons/Header/Header.component';
 import { FooterComponent } from './commons/Footer/Footer.component';
 import { MenuComponent } from './commons/Menu/Menu.component';
-import { LoginComponent } from './core/auth/login/login.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { InputTextModule } from 'primeng/inputtext';
-import { PasswordModule } from 'primeng/password';
-import { ButtonModule } from 'primeng/button';
-import { MenubarModule } from 'primeng/menubar';
-import { CardModule } from 'primeng/card';
+ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { JwtService } from './core/services/jwt.service';
 import { UserService } from './core/services/user.service';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
@@ -20,8 +14,10 @@ import { ApiInterceptor } from './core/interceptors/api.interceptor';
 import { TokenInterceptor } from './core/interceptors/token.interceptor';
 import { ErrorInterceptor } from './core/interceptors/error.interceptor';
 import { EMPTY } from "rxjs";
-import { HomeComponent } from './components/home/home.component';
-import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import {StyleClassModule} from 'primeng/styleclass';
+ import { NgPrimeModule } from './ngPrime/ngPrime.module';
+
+
 
 export function initAuth(jwtService: JwtService, userService: UserService) {
   return () => (jwtService.getToken() ? userService.getCurrentUser() : EMPTY);
@@ -33,8 +29,7 @@ export function initAuth(jwtService: JwtService, userService: UserService) {
       HeaderComponent,
       FooterComponent,
       MenuComponent,
-      LoginComponent,
-      HomeComponent
+      routingComponents
    ],
   imports: [
     BrowserModule,
@@ -42,8 +37,8 @@ export function initAuth(jwtService: JwtService, userService: UserService) {
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    InputTextModule,PasswordModule,ButtonModule,MenubarModule,CardModule,ProgressSpinnerModule
-
+    NgPrimeModule,// all the ng prime module are inserted in this module page
+    StyleClassModule
   ],
   providers: [
     {
@@ -59,3 +54,4 @@ export function initAuth(jwtService: JwtService, userService: UserService) {
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+

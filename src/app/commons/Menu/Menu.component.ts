@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { MenuItem } from 'primeng/api';
+import { UserService } from 'src/app/core/services/user.service';
 
 @Component({
   selector: 'app-Menu',
@@ -8,7 +10,13 @@ import { MenuItem } from 'primeng/api';
 })
 export class MenuComponent implements OnInit {
 
-  constructor() { }
+  constructor( private readonly router: Router,
+    private readonly userService: UserService) { }
+
+
+  logout(): void {
+    this.userService.logout();
+  }
   items: MenuItem[] | undefined;
 
   ngOnInit() {

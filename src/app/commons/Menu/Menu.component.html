@@ -1,4 +1,18 @@
 
-<div class="card">
-  <p-menubar [model]="items"></p-menubar>
-</div>
+<p-menubar [model]="items">
+  <ng-template pTemplate="start">
+      <img src="https://ekalyan.cgg.gov.in:443/new-template/img/newJrEmblem.jpg" height="40" class="mr-2" />
+  </ng-template>
+  <ng-template pTemplate="middle">
+  <button class="btn btn-outline-danger" (click)="logout()">
+    Or click here to logout.
+  </button>
+  </ng-template>
+  <ng-template pTemplate="end">
+    <p-button icon="pi pi-sign-out" (click)="logout()" styleClass="p-button-rounded p-button-danger"></p-button>
+
+
+  </ng-template>
+
+
+</p-menubar>
